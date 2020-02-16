@@ -11,7 +11,7 @@ public:
 
     int getState() const;
 
-private:
+protected:
     int findAlph(char);
     bool isInAcceptingState();
     

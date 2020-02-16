@@ -1,5 +1,5 @@
 #include <iostream>
-#include "automat.h"
+#include "domol_automat.h"
 
 using std::cout;
 using std::cin;
@@ -7,28 +7,43 @@ using std::endl;
 
 int main(int argc, char* argv[])
 {
-    std::string str_to_validate = "babab";
-    if(argc > 1)
+    std::vector<std::string> alph = {"letter", "number", "{", "}", "(", "*", ")", ";", "=", "<", ">", "space", "other", "$"};
+    std::vector<int> accepting_states = {21};
+    std::vector<std::vector<int>> state_transitions = {{},{2,4,6,19,8,19,19,12,19,14,17,1,19,21},
+                                                          {2,2,3,3,3,3,3,3,3,3,3,3,3,3}, 
+                                                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                                                          {5,4,5,5,5,5,5,5,5,5,5,5,5,5},
+                                                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                                                          {6,6,6,7,6,6,6,6,6,6,6,6,6,19},
+                                                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                                                          {20,20,20,20,20,9,20,20,20,20,20,20,20,20,19},
+                                                          {9,9,9,9,9,10,9,9,9,9,9,9,9,19},
+                                                          {9,9,9,9,9,10,11,9,9,9,9,9,9,19},
+                                                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                                                          {20,20,20,20,20,20,20,20,13,20,20,20,20,19},
+                                                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                                                          {20,20,20,20,20,20,20,20,15,20,20,20,20,19},
+                                                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                                                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                                                          {20,20,20,20,20,20,20,20,18,20,20,20,20,19},
+                                                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                                                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                                                          {1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                                                          {21,21,21,21,21,21,21,21,21,21,21,21,21,21}
+                                                          
+    };
+    std::vector<bool> backup = {0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    std::vector<bool> read =   {1,1,0,1,0,1,0,1,1,1,0,1,0,1,0,0,1,0,0,0,0};
+
+    domol_automat d(alph,state_transitions,1,accepting_states,backup,read);
+    if(d.validate("béla1=21;$"))
     {
-        str_to_validate = argv[1];
-    }
-    std::vector<char> alph = {'a', 'b'};
-    /*std::vector<std::vector<int>> state_transitions = {{0, 0},{1, 2}, {0, 2}};
-    std::vector<int> accept = {2};*/
-    std::vector<std::vector<int>> state_transitions = {{0, 0},{2, 1}, {3, 2}, {0, 3}};
-    std::vector<int> accept = {3};
-    int start = 1;
-    Automat a(alph, state_transitions,start, accept);
-    if(a.validate(str_to_validate))
-    {
-        cout << "A gép elfogadta a sztringet." <<endl;
+        std::cout << "Elfogadja." << endl;
     }
     else
     {
-        cout << "A gép nem fogadta el a sztringet." <<endl;
+        cout << "NYET" << endl;
     }
     
-    cout << "A szöveg beolvasása után a gép a(z) " << a.getState() << ". állapotba került." << endl;
-
     return 0;
 }

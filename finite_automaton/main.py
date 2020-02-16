@@ -36,5 +36,6 @@ read   = convert([0,1,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,0,0,1,0,0])
 d = DomolAutomat(alphabet,state_transition,1,[21],backup,read)
 #print(d.validate("{én vagyok itt (* nem *)\} 12norbi12:=(* ez **nem*)>=131 erzsi$"))
 if len(sys.argv) == 2:
-    print(d.validate(sys.argv[1]))
-    print(d.getState())
+    print("A lexikális elemző elfogadta a programkódot." if d.validate(sys.argv[1]) else "A lexikális elemző nem fogadta el a programkódot.")
+    print("A lexikális elemző a(z) " + str(d.getState()) + ". állapotban állt meg.")
+    print("A lexikális elemzés eredménye: ", d.getLexicalFormula())

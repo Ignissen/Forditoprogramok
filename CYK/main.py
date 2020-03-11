@@ -23,4 +23,5 @@ except FileNotFoundError:
 
 asd = CYK(rules)
 print(asd.validate(s))
-
+for a in asd.cyk_array:
+    print(a)

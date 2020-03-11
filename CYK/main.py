@@ -22,6 +22,6 @@ except FileNotFoundError:
     print("File not found: " + sys.argv[1])
 
 asd = CYK(rules)
-print(asd.validate(s))
+print("The given string can be generated from the grammar" if asd.validate(s) else "The given string can't be generated from the grammar")
 for a in asd.cyk_array:
     print(a)

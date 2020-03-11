@@ -13,20 +13,14 @@ class CYK:
                     self.cyk_array[len(self.cyk_array) - 1 - i][i].append(self.rules[j][0])
         
         for k in range(len(self.cyk_array) - 2, -1, -1):
-            print("k =",k)
             j = 0
             for i in range(k, -1, -1):
-                print("i =",i,"j =",j)
                 for l in range(i + 1, len(self.cyk_array) - j):
-                    print("l =",l)
                     for m in self.cyk_array[l][j]:
                         for n in self.cyk_array[i][len(self.cyk_array[i]) - (l - i)]:
-                            print("mn=",m+n)
                             for o in range(len(self.rules)):
                                 if m+n == self.rules[o][1]:
                                     self.cyk_array[i][j].append(self.rules[o][0])
-                    #if self.cyk_array[i][j] == []:
-                    #    self.cyk_array[i][j].append("-")
                     
                 j += 1
         

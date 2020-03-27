@@ -7,11 +7,13 @@ This python script is an implementation of the CYK Algorithm. This scripts can d
 ```bash
     python3 main.py <file containing the rules> [string to be analyzed]
 ```
+If you leave out the string to be analyzed then at the start of the script it will prompt the user to input it.
 
 ### Windows and other Linux distros
 ```bash
     python main.py <file containing the rules> [string to be analyzed]
 ```
+If you leave out the string to be analyzed then at the start of the script it will prompt the user to input it.
 
 ### Note:
 This will probably work on MacOS the same as one of the options mentioned before.

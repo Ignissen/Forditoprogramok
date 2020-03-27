@@ -27,7 +27,7 @@ S AB
 S CB
 S d
 ```  
-You must not include the '->'s in the rule file.  
+You must not include the '->'s in the rule file. And you have to write out separately all the rules, can't combine the ones with the same left-side.
 
 ## Note:
 This is probably not the most efficient implementation of the CYK algorithm but it's short and works just fine.

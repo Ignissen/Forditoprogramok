@@ -1,10 +1,12 @@
 from automat import *
 import string
+
+
 class DomolAutomat(Automat):
     def __init__(self, alphabet, state_transitions, start_state, accepting_states, backup, read):
         super().__init__(alphabet, state_transitions, start_state, accepting_states)
         self.backup = backup
-        self.read = read 
+        self.read = read
         self.lexical_formula = ""
 
     def validate(self, s):
@@ -75,12 +77,12 @@ class DomolAutomat(Automat):
                 elif self.state == 18 and self.state_transitions[self.state][alph] == 1:
                     #print("<>= token>", end="")
                     self.lexical_formula += "<>= token>"
-		elif self.state == 19 and self.state_transitions[self.state][alph] == 1:
-		    self.lexical_formula += "<hiba>"
-		elif self.state == 20 and self.state_transitions[self.state][alph] == 1:
-		    self.lexical_formula += "<hiba/továbbfejlesztés>"
-		
-		self.state = self.state_transitions[self.state][alph
+                elif self.state == 19 and self.state_transitions[self.state][alph] == 1:
+                    self.lexical_formula += "<hiba>"
+                elif self.state == 20 and self.state_transitions[self.state][alph] == 1:
+                    self.lexical_formula += "<hiba/továbbfejlesztés>"
+
+                self.state = self.state_transitions[self.state][alph]
                 if self.state == 21:
                     #print("<$(program vége) token>")
                     self.lexical_formula += "<$(program vége) token>"
@@ -88,7 +90,7 @@ class DomolAutomat(Automat):
                     return False
             except ItemNotFound:
                 return False
-            #print()
+            # print()
         return self.isInAcceptingState()
 
     def getLexicalFormula(self):
